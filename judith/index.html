@@ -240,7 +240,7 @@ img.emoji {
         data-flex-xs="none"
         data-flex-sm="none"
         data-background-thumb="../wp-content/uploads/2017/10/tumblr_mafx8oesiy1qhttpto2_1280-210x300.jpg"
-        data-background-large="../wp-content/uploads/2017/10/Judith.jpg"
+        data-background-large="../wp-content/uploads/2017/10/judith.jpg"
         class="max-width-400px basic-sideheader overflow-hidden site-palette-yin-1-background-color"
         >
 
@@ -385,6 +385,181 @@ img.emoji {
 			
 			
 		</style>
+		<style>
+	
+	@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+article {
+    width: 100%;
+    margin: auto;
+}
+
+blockquote {
+    font-size: 1.2rem;
+}
+.btn {
+        background-color: #eee;
+        background-image: linear-gradient(to bottom,#fcfcfc 0,#eee 100%);
+        border-radius: 3px;
+        border: 1px solid #d5d5d5;
+        color: #333;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; 
+        font-size: .5rem;
+        font-weight: bold;
+        padding: 4px 6px 4px 6px;
+        text-decoration: none;
+        text-shadow: 0 1px 0 #fff;
+}
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 48px;
+    outline: none;
+    padding: 0;
+    width: 48px;
+}
+
+#play {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/play.svg);
+}
+#play.played {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/play1.svg);
+}
+#pause {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/pause.svg);
+}
+#pause.paused {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/pause1.svg);
+}
+#stop {
+    background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/stop.svg);
+}
+#stop.stopped {
+    background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/stop1.svg);
+}
+@media (max-width: 700px) {
+    html {
+        font-size: 14pt;
+    }
+    article {
+        width: 90%;
+    }
+}
+body {
+	margin: 0;
+}
+
+/*  demo decor */
+
+#-demo-title {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 36px;
+	background-color: #D5FFD1;
+	color: #0F316C;
+	line-height: 36px;
+	font-weight: bold;
+	font-size: 16pt;
+	text-align: center;
+}
+
+#-demo-profile {
+	float: left;
+	height: 100%;
+	opacity: .4;
+}
+
+#-demo-profile:hover {
+	opacity: 1;
+}
+@media (max-width: 400px) {
+	#-demo-title {
+		font-size: 12pt;
+	}
+}
+</style>
+
+
+</style>
+
+		 <div>
+        <button id="play"></button> &nbsp;
+        <button id="pause"></button> &nbsp;
+        <button id="stop"></button>
+    </div>
+<script type="text/javascript">
+    
+
+    onload = function() {
+    if ('speechSynthesis' in window) with(speechSynthesis) {
+
+
+        var playEle = document.querySelector('#play');
+        var pauseEle = document.querySelector('#pause');
+        var stopEle = document.querySelector('#stop');
+        var flag = false;
+
+
+        playEle.addEventListener('click', onClickPlay);
+        pauseEle.addEventListener('click', onClickPause);
+        stopEle.addEventListener('click', onClickStop);
+
+        function onClickPlay() {
+            if(!flag){
+                flag = true;
+                utterance = new SpeechSynthesisUtterance(document.querySelector('article').textContent);
+                utterance.voice = getVoices()[0];
+                utterance.onend = function(){
+                    flag = false; playEle.className = pauseEle.className = ''; stopEle.className = 'stopped';
+                };
+                playEle.className = 'played';
+                stopEle.className = '';
+                speak(utterance);
+            }
+             if (paused) { /* unpause/resume narration */
+                playEle.className = 'played';
+                pauseEle.className = '';
+                resume();
+            } 
+        }
+
+        function onClickPause() {
+            if(speaking && !paused){ /* pause narration */
+                pauseEle.className = 'paused';
+                playEle.className = '';
+                pause();
+            }
+        }
+
+        function onClickStop() {
+            if(speaking){ /* stop narration */
+                /* for safari */
+                stopEle.className = 'stopped';
+                playEle.className = pauseEle.className = '';
+                flag = false;
+                cancel();
+
+            }
+        }
+
+    }
+
+    else { /* speech synthesis not supported */
+        msg = document.createElement('h5');
+        msg.textContent = "Detected no support for Speech Synthesis";
+        msg.style.textAlign = 'center';
+        msg.style.backgroundColor = 'red';
+        msg.style.color = 'white';
+        msg.style.marginTop = msg.style.marginBottom = 0;
+        document.body.insertBefore(msg, document.querySelector('div'));
+    }
+
+}
+
+</script>
+
+<article>
 		
 <p style="font-size:23px" class="has-drop-cap">In 1928 modernist English novelist Virginia Woolf's gave a series of lectures at a couple woman's colleges in Cambridge on the subject of women in fiction and the social and economic binds that kept women from easily writing and achieving the success held by man in the literary field. Later in 1929 this essays was publisged as a collection under the name of A Room of One’s Own. In chapter three of this book, often referred to as “Shakespeare's Sister” Woolf creates the figure of Judith Shakespeare. In this segment, Woolf takes a step back from analyzing historical figures and instead creates a rhetorical situation in which the fictional Judith stands as example to the young women. Woolf creates her to show how a woman with talent equal to Shakespeare would not, because of the structure of society, be able to achieve the same success
 Judith is equal to her brother in every way except for gender and the implications of that difference. While he ventures out into the world to learn and create, she remains at home darning socks. While his works won him “access to the palace of the queen”, her writing was never seen “scribbled... in an apple loft on the sly” and “set fire to soon after”. When William went to London, it was with the support of his parents; when Judith left, she had to run away in the night. While he found fame on the london stage, she found herself unemployable and with child from the only man willing to “help” her. And while William Shakespeare lived forever through his beloved words, Judith Shakespeare killed herself and lies forgotten “buried at some crossroad”.
@@ -395,7 +570,7 @@ Virginia Woolf has stated her believe that, no one can be a genius by birth but 
 <p><h3>a) Material circumstances: </h3> The material circumstances mentioned by Woolf are lack of money, lack of exposure, staying home, lack of education and lack of time. Back then socially, a woman was confined to a home life. They had to do all the household chores all day long and their life was confined in the house and hearth. They didn’t have any opportunity to travel around the world, meet new people and broaden their outside. Though in Shakespeare’s plays one can find women to be strong, bold, independent, “in fact she was the slave of any boy whose parents forced a ring upon her finger”. On that time girls education was hardly thought of, they can hardly read or write. Woolf also points out that there is also a little mention of women in history books. This lack of education kept women as inferior to men. 
 Woolf mentions, “Some of the most inspired words, some of the most profound thoughts in literature fall from her lips; in real life she could hardly read, could scarcely spell, and was the property of her husband”. Having no education and no source of income as girls grew old they became only a burden to their families. And the only way to get rid of this burden was to marry her off. But nobody considered about educating women so that they can earn their bread by themselves. But it was not even consider as an option. The only two options for a grown up girl was either she can get married, lay children and die when God takes her soul or they can simply commit suicide which is also consider as a crime.</p>
 <p><h3>b) Immaterial circumstances: </h3>The immaterial circumstances mentioned by Woolf are hostility of the world, discouragement, conviction of the inferiority of women and superiority of men, external barriers, e.g. convictions like ‘women are to stay indoor’ and ‘women are to serve Men’, internalization of barriers: self-degradation and lack of confidence. Woolf suggests that women produce so little literature because of the tremendous discouragement and criticism that female writers face. She discusses the effects of opposition and disapproval upon the artistic mind. The opinions of others greatly affect artists, and it is those of genius who are most sensitive to criticism. Woolf also believes that society denies women the chance to live the “invigorating life” that is beneficial to the production of good fiction. According to Woolf women writers with potential genius was not encouraged at all even by their own family. Even if she tried to read something her family would have “told her to mend the stockings or mind the stew and not moon about with books and papers”. But nobody realized that women can have psychological needs just like men, after all they are also human being. </p>
-
+</article>
 
 
 <hr class="wp-block-separator" />

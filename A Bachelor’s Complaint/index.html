@@ -386,6 +386,180 @@ img.emoji {
 			
 			
 		</style>
+
+		<style>
+	
+	@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+article {
+    width: 100%;
+    margin: auto;
+}
+
+blockquote {
+    font-size: 1.2rem;
+}
+.btn {
+        background-color: #eee;
+        background-image: linear-gradient(to bottom,#fcfcfc 0,#eee 100%);
+        border-radius: 3px;
+        border: 1px solid #d5d5d5;
+        color: #333;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; 
+        font-size: .5rem;
+        font-weight: bold;
+        padding: 4px 6px 4px 6px;
+        text-decoration: none;
+        text-shadow: 0 1px 0 #fff;
+}
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 48px;
+    outline: none;
+    padding: 0;
+    width: 48px;
+}
+
+#play {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/play.svg);
+}
+#play.played {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/play1.svg);
+}
+#pause {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/pause.svg);
+}
+#pause.paused {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/pause1.svg);
+}
+#stop {
+    background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/stop.svg);
+}
+#stop.stopped {
+    background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/stop1.svg);
+}
+@media (max-width: 700px) {
+    html {
+        font-size: 14pt;
+    }
+    article {
+        width: 90%;
+    }
+}
+body {
+	margin: 0;
+}
+
+/*  demo decor */
+
+#-demo-title {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 36px;
+	background-color: #D5FFD1;
+	color: #0F316C;
+	line-height: 36px;
+	font-weight: bold;
+	font-size: 16pt;
+	text-align: center;
+}
+
+#-demo-profile {
+	float: left;
+	height: 100%;
+	opacity: .4;
+}
+
+#-demo-profile:hover {
+	opacity: 1;
+}
+@media (max-width: 400px) {
+	#-demo-title {
+		font-size: 12pt;
+	}
+}
+</style>
+
+
+</style>
+
+		 <div>
+        <button id="play"></button> &nbsp;
+        <button id="pause"></button> &nbsp;
+        <button id="stop"></button>
+    </div>
+<script type="text/javascript">
+    
+
+    onload = function() {
+    if ('speechSynthesis' in window) with(speechSynthesis) {
+
+
+        var playEle = document.querySelector('#play');
+        var pauseEle = document.querySelector('#pause');
+        var stopEle = document.querySelector('#stop');
+        var flag = false;
+
+
+        playEle.addEventListener('click', onClickPlay);
+        pauseEle.addEventListener('click', onClickPause);
+        stopEle.addEventListener('click', onClickStop);
+
+        function onClickPlay() {
+            if(!flag){
+                flag = true;
+                utterance = new SpeechSynthesisUtterance(document.querySelector('article').textContent);
+                utterance.voice = getVoices()[0];
+                utterance.onend = function(){
+                    flag = false; playEle.className = pauseEle.className = ''; stopEle.className = 'stopped';
+                };
+                playEle.className = 'played';
+                stopEle.className = '';
+                speak(utterance);
+            }
+             if (paused) { /* unpause/resume narration */
+                playEle.className = 'played';
+                pauseEle.className = '';
+                resume();
+            } 
+        }
+
+        function onClickPause() {
+            if(speaking && !paused){ /* pause narration */
+                pauseEle.className = 'paused';
+                playEle.className = '';
+                pause();
+            }
+        }
+
+        function onClickStop() {
+            if(speaking){ /* stop narration */
+                /* for safari */
+                stopEle.className = 'stopped';
+                playEle.className = pauseEle.className = '';
+                flag = false;
+                cancel();
+
+            }
+        }
+
+    }
+
+    else { /* speech synthesis not supported */
+        msg = document.createElement('h5');
+        msg.textContent = "Detected no support for Speech Synthesis";
+        msg.style.textAlign = 'center';
+        msg.style.backgroundColor = 'red';
+        msg.style.color = 'white';
+        msg.style.marginTop = msg.style.marginBottom = 0;
+        document.body.insertBefore(msg, document.querySelector('div'));
+    }
+
+}
+
+</script>
 		
 <p style="font-size:23px" class="has-drop-cap">“A Bachelor’s Complaint of the Behavior of Married People” was first published in 1823 in Charles Lamb’s (1775-1834) essay collection “Essays of Elia”. This essay has a mock serious or Pseudo serious tone and it is written in an argumentative style. Charles Lamb’s essay “A Bachelor’s Complaint of the Behavior of Married People” is just what the title suggests: it is indeed a bachelor’s complaint of the behavior of married People.
 Lamb emphasizes his single status in the start of the essay “As a single man” and in doing so, separates himself from the “Married People.” He talks about Married People as if they are despicable and offensive and gives both hypothetical and personal examples to back up his points. Married People set themselves apart in their own groups through their attitudes. They really do seem to be off in their own little world of love, and this is what Lamb dislikes. He believes that Married People “prefer one another to all the world” and openly flaunt it, thus offending singles such as Lamb by implying that they “are not the object of this preference”. Furthermore, Lamb believes that overall, singles are looked down on Married People are undoubtedly more favored and knowledgeable. The main complaint that Lamb is making throughout the whole essay is the Married People’s attitudes and how they demonstrate their status. Towards the end of the essay, Lamb brings up the subject of children and how they also contribute to the Married People’s attitudes. He brings out all the negative aspects of children and emphasizes them by listing them continuously with dashes as separation. By using the negative aspects of children, he furthers his disapproval of Married People and their actions.

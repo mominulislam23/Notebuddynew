@@ -373,6 +373,180 @@ img.emoji {
 			
 			
 		</style>
+		<style>
+	
+	@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+article {
+    width: 100%;
+    margin: auto;
+}
+
+blockquote {
+    font-size: 1.2rem;
+}
+.btn {
+        background-color: #eee;
+        background-image: linear-gradient(to bottom,#fcfcfc 0,#eee 100%);
+        border-radius: 3px;
+        border: 1px solid #d5d5d5;
+        color: #333;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; 
+        font-size: .5rem;
+        font-weight: bold;
+        padding: 4px 6px 4px 6px;
+        text-decoration: none;
+        text-shadow: 0 1px 0 #fff;
+}
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 48px;
+    outline: none;
+    padding: 0;
+    width: 48px;
+}
+
+#play {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/play.svg);
+}
+#play.played {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/play1.svg);
+}
+#pause {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/pause.svg);
+}
+#pause.paused {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/pause1.svg);
+}
+#stop {
+    background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/stop.svg);
+}
+#stop.stopped {
+    background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/stop1.svg);
+}
+@media (max-width: 700px) {
+    html {
+        font-size: 14pt;
+    }
+    article {
+        width: 90%;
+    }
+}
+body {
+	margin: 0;
+}
+
+/*  demo decor */
+
+#-demo-title {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 36px;
+	background-color: #D5FFD1;
+	color: #0F316C;
+	line-height: 36px;
+	font-weight: bold;
+	font-size: 16pt;
+	text-align: center;
+}
+
+#-demo-profile {
+	float: left;
+	height: 100%;
+	opacity: .4;
+}
+
+#-demo-profile:hover {
+	opacity: 1;
+}
+@media (max-width: 400px) {
+	#-demo-title {
+		font-size: 12pt;
+	}
+}
+</style>
+
+
+</style>
+
+		 <div>
+        <button id="play"></button> &nbsp;
+        <button id="pause"></button> &nbsp;
+        <button id="stop"></button>
+    </div>
+<script type="text/javascript">
+    
+
+    onload = function() {
+    if ('speechSynthesis' in window) with(speechSynthesis) {
+
+
+        var playEle = document.querySelector('#play');
+        var pauseEle = document.querySelector('#pause');
+        var stopEle = document.querySelector('#stop');
+        var flag = false;
+
+
+        playEle.addEventListener('click', onClickPlay);
+        pauseEle.addEventListener('click', onClickPause);
+        stopEle.addEventListener('click', onClickStop);
+
+        function onClickPlay() {
+            if(!flag){
+                flag = true;
+                utterance = new SpeechSynthesisUtterance(document.querySelector('article').textContent);
+                utterance.voice = getVoices()[0];
+                utterance.onend = function(){
+                    flag = false; playEle.className = pauseEle.className = ''; stopEle.className = 'stopped';
+                };
+                playEle.className = 'played';
+                stopEle.className = '';
+                speak(utterance);
+            }
+             if (paused) { /* unpause/resume narration */
+                playEle.className = 'played';
+                pauseEle.className = '';
+                resume();
+            } 
+        }
+
+        function onClickPause() {
+            if(speaking && !paused){ /* pause narration */
+                pauseEle.className = 'paused';
+                playEle.className = '';
+                pause();
+            }
+        }
+
+        function onClickStop() {
+            if(speaking){ /* stop narration */
+                /* for safari */
+                stopEle.className = 'stopped';
+                playEle.className = pauseEle.className = '';
+                flag = false;
+                cancel();
+
+            }
+        }
+
+    }
+
+    else { /* speech synthesis not supported */
+        msg = document.createElement('h5');
+        msg.textContent = "Detected no support for Speech Synthesis";
+        msg.style.textAlign = 'center';
+        msg.style.backgroundColor = 'red';
+        msg.style.color = 'white';
+        msg.style.marginTop = msg.style.marginBottom = 0;
+        document.body.insertBefore(msg, document.querySelector('div'));
+    }
+
+}
+
+</script>
+<article>
 		<h5>Restoration Comedy of Manners:  “The Way of the World” which is written by William Congreve (1670-1729), premiered in 1700, is the most apposite example of comedy of manners with its witty dialogues between the characters, criticism of the upper class people’s manners and also satiric and effective scenes and proviso scene that ends in a lyrical celebration of unity. This comedy contains almost all the qualities which we find in a Restoration comedy and thus representing the peak and the perfection of this type of comedy. It presents a vast vista of contemporary social morality and principles and maintains a satirical tone from the beginning to the end. It gives us valuable information about the sophisticated class of society in England at that time. </h5>
 		<hr class="wp-block-separator" />
 
@@ -417,7 +591,7 @@ Mirabells conditions also mocked some flaws in social practices. In that century
 In Congreve’s “The Way of the World” Congreve seems to come to realise the importance for providing an ideal pair of man and woman, ideal in the sense that the pair could be taken for models in the life-style of the period. In fact, it serves as an excellent medium through which Congreve conveys his message to his readers. The lovers negotiate in this scene for a mutual private happiness within the confines of a rigid and demanding social context and they establish their relationship upon the possibility of such reconciliation. They manage to be sincere in a world full of pretence and their love is in any case true love.
 </p>
 
-
+</article>
 												<div class="clearfix  padding-both-30"></div>
 
 												
