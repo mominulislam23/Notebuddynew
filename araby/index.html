@@ -83,13 +83,144 @@ img.emoji {
     data-layout="column"
     data-flex
     class="post-template-default single single-post postid-108 single-format-standard wp-custom-logo site-palette-yang-1-background-color site-palette-yin-1-color site-typeface-body">
+<style type="text/css">
+	
+	.progress-top,
+.progress-right,
+.progress-bottom,
+.progress-left {
+  position: fixed;
+  z-index: 999;
+  background-color: #ffc769;
+}
 
-          <div id="loader" class="pageload-overlay" data-opening="M 0,0 80,-10 80,60 0,70 0,0" data-closing="M 0,-10 80,-20 80,-10 0,0 0,-10">
-				<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
-					<path d="M 0,70 80,60 80,80 0,80 0,70"/>
-				</svg>
-	</div>
+.progress-top,
+.progress-bottom {
+  height: 0.35em;
+}
+
+.progress-right,
+.progress-left {
+  width: 0.35em;
+}
+
+.progress-top,
+.progress-right {
+  top: 0;
+}
+
+.progress-top,
+.progress-left {
+  left: 0;
+}
+
+.progress-bottom,
+.progress-left {
+  bottom: 0;
+}
+
+.progress-bottom,
+.progress-right {
+  right: 0;
+}
+
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  color: #fff;
+  background-color: #000;
+}
+
+.header, .footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  font-size: 3em;
+}
+
+main {
+  height: 500vh;
+}
+
+</style>
+
+<script type="text/javascript">
+	
+	// Progress Scroll
+var ProgressScroll = function () {
+  var s = void 0;
+
+  return {
+    settings: function settings() {
+      return {
+        top: $('.progress-top'),
+        right: $('.progress-right'),
+        bottom: $('.progress-bottom'),
+        left: $('.progress-left'),
+        windowHeight: $(window).height(),
+        windowWidth: $(window).width(),
+        scrollHeight: $(document).height() - $(window).height(),
+        progressTotal: $(window).height() * 2 + $(window).width() * 2,
+        scrollPosition: $(document).scrollTop()
+      };
+    },
+    init: function init() {
+      s = this.settings();
+      this.bindEvents();
+    },
+    bindEvents: function bindEvents() {
+      $(window).on('scroll', this.onScroll);
+      $(window).on('resize', this.onResize);
+
+      this.progress();
+    },
+    onScroll: function onScroll() {
+      s.scrollPosition = $(document).scrollTop();
+
+      ProgressScroll.requestTick();
+    },
+    onResize: function onResize() {
+      s.windowHeight = $(window).height();
+      s.windowWidth = $(window).width();
+      s.scrollHeight = $(document).height() - s.windowHeight;
+      s.progressTotal = s.windowHeight * 2 + s.windowWidth * 2;
+
+      ProgressScroll.requestTick();
+    },
+    requestTick: function requestTick() {
+      requestAnimationFrame(this.progress);
+    },
+    progress: function progress() {
+      var percentage = s.scrollPosition / s.scrollHeight;
+      var width = s.windowWidth / s.progressTotal;
+      var height = s.windowHeight / s.progressTotal;
+
+      s.top.css('width', percentage / width * 100 + '%');
+      s.right.css('height', (percentage - width) / height * 100 + '%');
+      s.bottom.css('width', (percentage - width - height) / width * 100 + '%');
+      s.left.css('height', (percentage - width - height - width) / height * 100 + '%');
+    }
+  };
+}();
+
+// Init
+$(function () {
+  ProgressScroll.init();
+});
+</script>
       <!-- MENU -->
+
+
+
+
+
     <div id="site-menu-block"
           data-layout-align="start center"
           class=" max-width-400px width-100 position-relative overlay-contentpush overlay site-left-sidenav site-sidenav site-palette-yang-2-background-color site-palette-yin-2-color"
@@ -366,6 +497,12 @@ img.emoji {
     		<div class="typography-responsive site-body-content-wrap padding-both-10 padding-top-40">
     			<div class="site-typeface-content max-width-800px site-body-content min-height-50vh padding-bottom-40 padding-top-40 margin-auto typo-size-content">
 
+    				<div class="progress-top"></div>
+<div class="progress-right"></div>
+<div class="progress-bottom"></div>
+<div class="progress-left"></div>
+
+
                 				
 
               
@@ -577,6 +714,8 @@ body {
 }
 
 </script>
+
+
 		
 <p style="font-size:23px" class="has-drop-cap">Araby is a short story by modernist writer James Joyce (1882 to 1941) which was published in 1914. As with many stories by Joyce and other modernist writers, 'Araby' employs a close first-person narrator describing the world as it appeals to his senses, and leaves the reader with only a suggested, rather than outright, moral resolution. James Joyce's “Araby” is a short story centering on an Irish adolescent emerging from boyhood fantasies into the harsh realities of everyday life in his country. 
 The story “Araby” conveys the idea that the personal feelings of a person and the real world are two different things. The writer has described the intensity of the schoolboy’s love at various places in the story.
